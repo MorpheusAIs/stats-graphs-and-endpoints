@@ -1,0 +1,45 @@
+@import './../../index.css';
+
+.supply_main_grid {
+    display: grid;
+    /* grid-template-columns: 40% 20% 40%; */
+    grid-template-columns: 50% 50%;
+    grid-gap: 1em;
+    justify-items: stretch;
+    align-items: stretch;
+}
+
+.supply_width {
+    width: 102.5%;
+}
+
+.chartheading{
+    font-size: 24px;
+    margin-left: 10px;
+    font-weight: 600;
+    color: var(--text-color);;
+    text-align: center;
+}
+
+.supply_chart_background{
+    
+    background: linear-gradient(to top right, var(--gradient-end-color), var(--gradient-start-color) 50%);
+    border-width: 2px;
+    padding: 15px;
+    border-color: var(--border-color);
+    border-right-style: solid;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-image: linear-gradient(to right, black, var(--border-color)) 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.supply_main_flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}

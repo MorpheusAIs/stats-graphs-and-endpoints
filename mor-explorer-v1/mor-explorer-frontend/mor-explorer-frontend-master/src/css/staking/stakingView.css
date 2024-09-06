@@ -1,0 +1,67 @@
+@import './../../index.css';
+
+.staking_reward_main_grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1em;
+    justify-items: stretch;
+    align-items: stretch;
+}
+
+.staking_time_main_grid_2 {
+    display: grid;
+    /* grid-template-columns: repeat(2, 1fr); */
+    grid-template-columns: 25% 40% 35%;
+    grid-gap: 1em;
+    justify-items: stretch;
+    align-items: stretch;
+}
+
+.mor_staking_overview_main_grid_3 {
+    display: grid;
+    /* grid-template-columns: repeat(2, 1fr); */
+    grid-template-columns: 30% 70%;
+    grid-gap: 1em;
+    justify-items: stretch;
+    align-items: stretch;
+}
+
+.mor_staking_overview_sub_grid_3 {
+    display: grid;
+    /* grid-template-columns: repeat(2, 1fr); */
+    grid-template-columns: 100%;
+    grid-gap: 1em;
+    justify-items: stretch;
+    align-items: stretch;
+}
+
+.staking_reward_main_flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.staking_chart_background{
+    
+    background: linear-gradient(to top right, var(--gradient-end-color), var(--gradient-start-color) 50%);
+    border-width: 2px;
+    padding: 15px;
+    border-color: var(--border-color);
+    border-right-style: solid;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-image: linear-gradient(to right, black, var(--border-color)) 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.chartheading{
+    font-size: 24px;
+    margin-left: 10px;
+    font-weight: 600;
+    color: var(--text-color);;
+    text-align: center;
+}
