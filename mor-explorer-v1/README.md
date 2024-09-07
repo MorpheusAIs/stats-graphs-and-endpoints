@@ -2,6 +2,7 @@
 
 MOR Explorer currently includes Supply and Staking Metrics for the MorpheusAI Community & It's token $MOR. You can find the reference to the MOR Explorer, its Code repositories, API reference, Gitbook Catalog and Examples.
 
+This repo contains the detailed end-to-end code for the frontend and the backend & API.
 
 ## Important Links:
 
