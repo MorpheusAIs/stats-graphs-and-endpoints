@@ -9,5 +9,5 @@ MOR Explorer currently includes Supply and Staking Metrics for the MorpheusAI Co
 3) [Frontend Examples & Reference](https://nirmaans-organization.gitbook.io/morpheus-explorer/frontend/markdown)
 4) [Backend Examples & Reference](https://nirmaans-organization.gitbook.io/morpheus-explorer/backend/api-helpers)
 5) [Frontend Repository](https://github.com/NirmaanAI/stats-graphs-and-endpoints/tree/main/mor-explorer-v1/mor-explorer-frontend/mor-explorer-frontend-master)
-6) [Backend Repository](https://github.com/NirmaanAI/stats-graphs-and-endpoints/tree/main/mor-explorer-v1/mor-explorer-backend)
+6) [Backend Repository](https://github.com/NirmaanAI/stats-graphs-and-endpoints/tree/main/mor-explorer-v1/mor-explorer-backend/mor-explorer-backend-main)
 7) [API Code](https://github.com/NirmaanAI/stats-graphs-and-endpoints/blob/main/mor-explorer-v1/mor-explorer-backend/mor-explorer-backend-main/main.py)
