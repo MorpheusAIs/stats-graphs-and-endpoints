@@ -1,12 +1,12 @@
-# MOR Explorer V1
+# Morpheus AI Metrics Dashboard
 
-MOR Explorer currently includes Supply and Staking Metrics for the MorpheusAI Community & It's token $MOR. You can find the reference to the MOR Explorer, its Code repositories, API reference, Gitbook Catalog and Examples.
+Morpheus AI Metrics Dashboard currently includes Supply and Staking Metrics for the MorpheusAI Community & It's token $MOR. You can find the reference to the Morpheus AI Metrics Dashboard, its Code repositories, API reference, Gitbook Catalog and Examples.
 
 This repo contains the detailed end-to-end code for the frontend and the backend & API.
 
 ## Important Links:
 
-1) [MOR Explorer](https://mor-explorer-frontend.pages.dev/supply)
+1) [Morpheus AI Metrics Dashboard](https://mor-explorer-frontend.pages.dev/supply)
 2) [Gitbook Catalog](https://nirmaans-organization.gitbook.io/morpheus-explorer)
 2) [API Reference](https://nirmaans-organization.gitbook.io/morpheus-explorer/api-reference/introduction)
 3) [Frontend Examples & Reference](https://nirmaans-organization.gitbook.io/morpheus-explorer/frontend/markdown)
