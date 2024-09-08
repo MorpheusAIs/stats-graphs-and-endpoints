@@ -1,4 +1,4 @@
-# MOR Explorer Backend V1 - Supply & Staking
+# Morpheus AI Metrics Dashboard - Supply & Staking
 
 ## How to Run:
 
