@@ -1,0 +1,132 @@
+@import './../../index.css';
+
+.supply_main_grid {
+    display: grid;
+    /* grid-template-columns: 40% 20% 40%; */
+    grid-template-columns: 50% 50%;
+    grid-gap: 1em;
+    justify-items: stretch;
+    align-items: stretch;
+}
+
+.supply_width {
+    width: 102.5%;
+}
+
+.chartheading{
+    font-size: 24px;
+    margin-left: 10px;
+    font-weight: 600;
+    color: var(--text-color);;
+    text-align: center;
+}
+
+.supply_chart_background{
+    
+    background: linear-gradient(to top right, var(--gradient-end-color), var(--gradient-start-color) 50%);
+    border-width: 2px;
+    padding: 15px;
+    border-color: var(--border-color);
+    border-right-style: solid;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-image: linear-gradient(to right, black, var(--border-color)) 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.supply_main_flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.supply-chart-container {
+    width: 100%;
+}
+
+.toggle-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.toggle-button {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 5px 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.toggle-button:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.toggle-button:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.toggle-button.active {
+    background-color: var(--primary-color);
+    color: var(--text-color-highlight);
+}
+
+.toggle-button:hover {
+    background-color: var(--hover-border-color);
+}
+
+.supply-chart-toggle {
+    margin-top: 20px;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.chartheading {
+    margin: 0;
+}
+
+.price-volume-toggle-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.chart-note {
+    text-align: right;
+    color: #888;
+    font-style: italic;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.charts-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.chart-item {
+    flex: 1;
+    margin: 0 20px;
+}
+
+@media (max-width: 768px) {
+    .charts-container {
+        flex-direction: column;
+    }
+}
+

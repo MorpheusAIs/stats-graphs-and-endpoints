@@ -1,0 +1,81 @@
+@import "./../../index.css";
+
+
+.toggle-group {
+    width: fit-content;
+    display: flex;
+    border-radius: 8px;
+    /* overflow: hidden; */
+    border: 2px solid var(--border-color);
+  }
+  .toggle-button {
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    background-color:transparent;
+    color: var(--text-color);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .toggle-button:hover {
+    color:var(--primary-color);
+  }
+  .toggle-button.selected {
+    background-color:var(--primary-color);
+    color:var(--text-color-highlight);
+  }
+  .toggle-button:not(:last-child) {
+    border-right: 1px solid var(--border-color);
+  }
+
+
+  .main_card {
+    width: 100%;
+    border: 2px solid var(--border-color);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* This will ensure sharp edges by default */
+    /* border-radius: 10px; */
+    
+}
+
+.card_head {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; /* Aligns items vertically center */
+}
+
+.card-title {
+    font-weight: bold;
+    color: var(--text-color);
+    font-size: large;
+}
+
+.card_content {
+    padding-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Aligns items vertically center */
+}
+
+
+.card-text {
+    color: var(--text-color);
+    font-weight: 400;
+    font-size: large;
+}
+
+.card-label {
+    color: var(--text-color);
+    font-size: large;
+}
+
+.card_icon {
+    color: var(--text-color);
+    margin-right: 5%;
+}

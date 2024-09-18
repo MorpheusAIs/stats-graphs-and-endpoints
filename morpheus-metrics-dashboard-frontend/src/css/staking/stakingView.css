@@ -1,0 +1,124 @@
+@import './../../index.css';
+
+/* General layout */
+.staking-view-container,
+.staking_time_main_grid,
+.mor-staking-overview {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+/* Grid layouts */
+.staking_reward_main_grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1em;
+}
+
+.staking_time_main_grid_2 {
+    display: grid;
+    grid-template-columns: 25% 40% 35%;
+    grid-gap: 1em;
+}
+
+.mor_staking_overview_main_grid_3 {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-gap: 1em;
+}
+
+.mor_staking_overview_sub_grid_3 {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-gap: 1em;
+}
+
+/* Flex layouts */
+.staking_reward_main_flex,
+.staking_metrics_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Toggle and info styles */
+.toggle_and_info,
+.toggle-and-info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.info_icon,
+.info-icon {
+    position: relative;
+}
+
+.tooltip {
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 0;
+    background-color: #333;
+    color: #fff;
+    padding: 8px;
+    border-radius: 4px;
+    z-index: 1000;
+    width: 200px;
+    text-align: left;
+    font-size: 12px;
+}
+
+/* Metrics card styles */
+.staking_metrics_card,
+.metrics-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.staking_metrics_card > div {
+    flex: 1 1 calc(33.333% - 10px);
+    min-width: 200px;
+}
+
+/* Chart styles */
+.staking_chart_container,
+.staking-chart-container {
+    width: 100%;
+}
+
+.staking_chart_background,
+.staking-chart-background {
+    background: linear-gradient(to top right, var(--gradient-end-color), var(--gradient-start-color) 50%);
+    border-width: 2px;
+    padding: 15px;
+    border-color: var(--border-color);
+    border-right-style: solid;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-image: linear-gradient(to right, black, var(--border-color)) 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.chartheading {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-color);
+    text-align: center;
+    margin: 0 0 15px 0;
+}
