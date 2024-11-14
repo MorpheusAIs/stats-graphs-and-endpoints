@@ -55,14 +55,7 @@ const MorStakingOverview = ({ data }) => {
 
     return (
         <div className="mor-staking-overview">
-            <div className="staking-chart-container">
-                <div className="chart-header">
-                    <h2 className="chartheading">Stakers Over Time Per Pool</h2>
-                </div>
-                <div className="staking-chart-background">
-                    <CumulativeStakersChart data={data.staker_analysis} />
-                </div>
-            </div>
+            <CumulativeStakersChart data={data.staker_analysis} />
         </div>
     );
 };

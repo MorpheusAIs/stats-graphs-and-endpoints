@@ -79,3 +79,32 @@
     color: var(--text-color);
     margin-right: 5%;
 }
+
+@media (max-width: 768px) {
+  .toggle-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .toggle-button {
+    width: 100%;
+    padding: 10px;
+  }
+  
+  .toggle-button:not(:last-child) {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .main_card {
+    padding: 10px;
+  }
+  
+  .card-title {
+    font-size: medium;
+  }
+  
+  .card-text, .card-label {
+    font-size: medium;
+  }
+}

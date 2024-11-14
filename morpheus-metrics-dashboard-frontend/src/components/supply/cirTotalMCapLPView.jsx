@@ -12,8 +12,8 @@ const CirTotalMCapLPView = ({ marketCapData, positionData }) => {
 
     const positionOptions = [
         { key: 'total_value_usd', value: 'PoL Value USD', title: "Protocol-Owned Liquidity Value USD" },
-        { key: 'mor_value', value: 'MOR PoL', title: "Protocol-Owned Liquidity Value MOR" },
-        { key: 'steth_value', value: 'wETH PoL', title: "Protocol-Owned Liquidity Value stETH" }
+        { key: 'mor_value', value: 'MOR PoL', title: "Protocol-Owned Liquidity Amount MOR" },
+        { key: 'steth_value', value: 'wETH PoL', title: "Protocol-Owned Liquidity Amount stETH" }
     ];
 
     const [selectedMarketCap, setSelectedMarketCap] = useState(marketCapOptions[0]);

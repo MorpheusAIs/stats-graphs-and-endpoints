@@ -88,9 +88,16 @@
 }
 
 /* Chart styles */
-.staking_chart_container,
-.staking-chart-container {
+.charts-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
     width: 100%;
+}
+
+.chart-item {
+    flex: 1;
+    min-width: 0;
 }
 
 .staking_chart_background,
@@ -106,6 +113,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 100%;
 }
 
 .chart-header {
@@ -122,3 +130,129 @@
     text-align: center;
     margin: 0 0 15px 0;
 }
+
+/* Cumulative stakers chart styles */
+.cumulative-stakers-chart-container {
+    width: 100%;
+}
+
+.cumulative-stakers-chart-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to top right, var(--gradient-end-color), var(--gradient-start-color) 50%);
+    border-width: 2px;
+    border-color: var(--border-color);
+    border-right-style: solid;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-image: linear-gradient(to right, black, var(--border-color)) 1; 
+    padding: 15px;
+}
+
+.cumulative-stakers-chart-container .chart-wrapper {
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+    .staking_reward_main_grid,
+    .staking_time_main_grid_2,
+    .mor_staking_overview_main_grid_3 {
+        grid-template-columns: 1fr;
+    }
+    
+    .staking_metrics_card > div {
+        flex: 1 1 100%;
+    }
+    
+    .charts-container {
+        flex-direction: column;
+    }
+
+    .chart-item {
+        width: 100%;
+    }
+
+    .chartheading {
+        font-size: 20px;
+    }
+
+    .cumulative-stakers-chart-container.mobile,
+    .cumulative-stakers-chart-container.mobile .cumulative-stakers-chart-content {
+        /* border: none;
+        border-image: none; */
+        padding: 10px;
+    }
+
+    .cumulative-stakers-chart-container.mobile .chart-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .cumulative-stakers-chart-container.mobile .chart-wrapper::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+    }
+
+    .cumulative-stakers-chart-container.mobile .chartheading {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    /* Make the metrics grid filter wider */
+    .toggle_and_info {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        margin-bottom: 15px;
+    }
+
+    .toggle-group {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .toggle-button {
+        flex: 1;
+        padding: 10px;
+    }
+
+    /* Adjust the metrics card layout */
+    .staking_metrics_card {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .staking_metrics_card > div {
+        width: 100%;
+    }
+
+    /* Add space between APY and Daily MOR Rewards cards */
+    .staking_reward_main_grid {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .staking_reward_main_flex {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .info_icon,
+    .info-icon {
+      display: none;
+    }
+  
+    .toggle_and_info,
+    .toggle-and-info {
+      justify-content: center;
+    }
+  }

@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { ToggleButtonGroup, DataCard, formatNumber } from '../utils/utils';
 import { Info } from 'lucide-react';
-import CumulativeStakersChart from './cumulativeStakersChart';
 import "./../../css/staking/stakingView.css";
 import api_url from "./../../config/api_url.json";
 
 const base_api_url = api_url.base_api_url;
 
-// Helper function to format days into years and months
 const formatDaysToYearsMonthsDays = (daysString) => {
     const match = daysString.match(/(\d+) days/);
     if (!match) return daysString;
@@ -23,7 +21,6 @@ const formatDaysToYearsMonthsDays = (daysString) => {
     return result.join(', ');
 };
 
-// Metrics Card Component for displaying various staking metrics
 const StakingMetricsCard = ({ averageMultiplier, averageStakeTime, dailyRewards, totalRewards, uniqueStakers, dailyEmittedPercentage, totalEmittedPercentage }) => {
     return (
         <div className="staking_metrics_card">
@@ -42,15 +39,15 @@ const StakingMetricsCard = ({ averageMultiplier, averageStakeTime, dailyRewards,
                 suffix={null}
             />
             <DataCard
-                title="MOR Rewards Staked (Daily / Total)"
-                value={`${formatNumber(dailyRewards.toFixed(2))} / ${formatNumber(totalRewards.toFixed(2))}`}
+                title="Total Unique Stakers"
+                value={uniqueStakers.toString()}
                 subcontent={null}
                 prefix={null}
                 suffix={null}
             />
             <DataCard
-                title="Total Unique Stakers"
-                value={uniqueStakers.toString()} // Display as a whole number string
+                title="MOR Rewards Staked (Daily / Total)"
+                value={`${formatNumber(dailyRewards).split('.')[0]} / ${formatNumber(totalRewards).split('.')[0]}`}
                 subcontent={null}
                 prefix={null}
                 suffix={null}
@@ -73,48 +70,54 @@ const StakingMetricsCard = ({ averageMultiplier, averageStakeTime, dailyRewards,
     );
 };
 
-// Main View Component for Staking Metrics
 const StakeTimeView = () => {
-    const [data, setData] = useState(null); // Store the fetched data
-    const [pool0Stakers, setPool0Stakers] = useState(0); // Unique stakers for pool_0
-    const [pool1Stakers, setPool1Stakers] = useState(0); // Unique stakers for pool_1
-    const [combinedStakers, setCombinedStakers] = useState(0); // Combined unique stakers
+    const [data, setData] = useState(null);
+    const [historicalData, setHistoricalData] = useState(null);
+    const [pool0Stakers, setPool0Stakers] = useState(0);
+    const [pool1Stakers, setPool1Stakers] = useState(0);
+    const [combinedStakers, setCombinedStakers] = useState(0);
 
-    // Options for staker pools
     const options = [
+        { key: 'combined', value: 'Combined' },
         { key: 'capital', value: 'Capital' },
-        { key: 'code', value: 'Code' },
-        { key: 'combined', value: 'Combined' }
+        { key: 'code', value: 'Code' }
     ];
 
-    // State to manage the selected option and tooltip visibility
-    const [selectedOption, setSelectedOption] = useState(options[2]);
+    const [selectedOption, setSelectedOption] = useState(options[0]);
     const [showTooltip, setShowTooltip] = useState(false);
 
-    // Fetch unique stakers data from the API
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`${base_api_url}/analyze-mor-stakers`);
-                const jsonData = await response.json();
+                const [stakersResponse, historicalResponse] = await Promise.all([
+                    fetch(`${base_api_url}/analyze-mor-stakers`),
+                    fetch(`${base_api_url}/historical_mor_rewards_locked`)
+                ]);
 
-                // Extract and store unique stakers
-                if (jsonData.staker_analysis && jsonData.staker_analysis.total_unique_stakers) {
-                    const uniqueStakers = jsonData.staker_analysis.total_unique_stakers;
+                const stakersData = await stakersResponse.json();
+                const historicalData = await historicalResponse.json();
+
+                // Get latest date's data from historical rewards
+                const dates = Object.keys(historicalData).sort();
+                const latestDate = dates[dates.length - 1];
+                setHistoricalData(historicalData[latestDate]);
+
+                if (stakersData.staker_analysis && stakersData.staker_analysis.total_unique_stakers) {
+                    const uniqueStakers = stakersData.staker_analysis.total_unique_stakers;
                     setPool0Stakers(uniqueStakers.pool_0 || 0);
                     setPool1Stakers(uniqueStakers.pool_1 || 0);
                     setCombinedStakers(uniqueStakers.combined || 0);
                 }
 
-                setData(jsonData); // Store the complete data object
+                setData(stakersData);
             } catch (error) {
+                console.error('Error fetching data:', error);
             }
         };
 
         fetchData();
-    }, []); // Empty dependency array ensures this runs once when the component mounts
+    }, []);
 
-    // Function to fetch the appropriate data based on the selected option
     const getDataForOption = (option) => {
         const key = option.key;
         const poolKey = key === 'capital' ? 'pool_0' : key === 'code' ? 'pool_1' : 'combined';
@@ -125,39 +128,55 @@ const StakeTimeView = () => {
         const stakerewardAnalysis = data?.stakereward_analysis || {};
         const emissionrewardAnalysis = data?.emissionreward_analysis || {};
 
-        let dailyRewards, totalRewards, dailyEmission, totalEmission, uniqueStakers, averageMultiplier;
-
-        // Use the unique stakers data we fetched
+        // Get daily rewards from stakereward analysis
+        let dailyRewards;
         if (key === 'combined') {
-            dailyRewards = (stakerewardAnalysis['0']?.daily_reward_sum || 0) + (stakerewardAnalysis['1']?.daily_reward_sum || 0);
-            totalRewards = (stakerewardAnalysis['0']?.total_current_user_reward_sum || 0) + (stakerewardAnalysis['1']?.total_current_user_reward_sum || 0);
-            dailyEmission = (emissionrewardAnalysis.new_emissions?.['Capital Emission'] || 0) + (emissionrewardAnalysis.new_emissions?.['Code Emission'] || 0);
-            totalEmission = (emissionrewardAnalysis.total_emissions?.['Capital Emission'] || 0) + (emissionrewardAnalysis.total_emissions?.['Code Emission'] || 0);
-            uniqueStakers = combinedStakers; // Use combined unique stakers
-            averageMultiplier = multiplierAnalysis.overall_average / 1e7;
+            dailyRewards = (stakerewardAnalysis['0']?.daily_reward_sum || 0) + 
+                          (stakerewardAnalysis['1']?.daily_reward_sum || 0);
         } else {
             dailyRewards = stakerewardAnalysis[stakerewardKey]?.daily_reward_sum || 0;
-            totalRewards = stakerewardAnalysis[stakerewardKey]?.total_current_user_reward_sum || 0;
-            dailyEmission = emissionrewardAnalysis.new_emissions?.[`${key === 'capital' ? 'Capital' : 'Code'} Emission`] || 0;
-            totalEmission = emissionrewardAnalysis.total_emissions?.[`${key === 'capital' ? 'Capital' : 'Code'} Emission`] || 0;
-            uniqueStakers = key === 'capital' ? pool0Stakers : pool1Stakers; // Use pool_0 or pool_1 unique stakers
-            averageMultiplier = multiplierAnalysis[`${key}_average`] / 1e7;
+        }
+
+        // Get total rewards from historical data
+        let totalRewards = 0;
+        if (historicalData) {
+            if (key === 'combined') {
+                totalRewards = historicalData.total;
+            } else if (key === 'capital') {
+                totalRewards = historicalData.capital;
+            } else {
+                totalRewards = historicalData.code;
+            }
+        }
+
+        // Get emissions data
+        let dailyEmission, totalEmission;
+        if (key === 'combined') {
+            dailyEmission = (emissionrewardAnalysis.new_emissions?.['Capital Emission'] || 0) + 
+                           (emissionrewardAnalysis.new_emissions?.['Code Emission'] || 0);
+            totalEmission = (emissionrewardAnalysis.total_emissions?.['Capital Emission'] || 0) + 
+                           (emissionrewardAnalysis.total_emissions?.['Code Emission'] || 0);
+        } else {
+            const emissionType = key === 'capital' ? 'Capital Emission' : 'Code Emission';
+            dailyEmission = emissionrewardAnalysis.new_emissions?.[emissionType] || 0;
+            totalEmission = emissionrewardAnalysis.total_emissions?.[emissionType] || 0;
         }
 
         return {
-            averageMultiplier: averageMultiplier.toFixed(2),
+            averageMultiplier: (key === 'combined' 
+                ? multiplierAnalysis.overall_average / 1e7
+                : multiplierAnalysis[`${key}_average`] / 1e7).toFixed(2),
             averageStakeTime: key === 'combined'
                 ? formatDaysToYearsMonthsDays(stakerAnalysis.combined_average_stake_time || '0 days')
                 : formatDaysToYearsMonthsDays(stakerAnalysis.average_stake_time?.[stakerewardKey] || '0 days'),
             dailyRewards: dailyRewards,
             totalRewards: totalRewards,
-            uniqueStakers: Math.round(uniqueStakers),
+            uniqueStakers: Math.round(key === 'combined' ? combinedStakers : key === 'capital' ? pool0Stakers : pool1Stakers),
             dailyEmittedPercentage: dailyEmission ? (dailyRewards / dailyEmission) * 100 : 0,
             totalEmittedPercentage: totalEmission ? (totalRewards / totalEmission) * 100 : 0
         };
     };
 
-    // Fetch the current data based on the selected option
     const currentData = getDataForOption(selectedOption);
 
     return (

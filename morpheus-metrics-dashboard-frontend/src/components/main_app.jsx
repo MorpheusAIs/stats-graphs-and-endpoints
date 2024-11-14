@@ -2,6 +2,8 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import SupplyView from './supply';
 import StakingView from './staking';
+import CapitalView from './capital';
+import CodeView from './code';
 import "./../css/main.css";
 
 function MainApp({ walletAddress, isWalletConnected }) {
@@ -18,6 +20,18 @@ function MainApp({ walletAddress, isWalletConnected }) {
                 <Route path="/staking" element={
                     <>
                         <StakingView />
+                    </>
+                } />
+
+                <Route path="/capital" element={
+                    <>
+                        <CapitalView />
+                    </>
+                } />
+
+                <Route path="/code" element={
+                    <>
+                        <CodeView />
                     </>
                 } />
 

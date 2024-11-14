@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import StakingHistogramChart from './stakingDistributionChart';
 import PowerMultiplierDistributionChart from './powerMultiplierDistributionChart';
-
 import api_url from "./../../config/api_url.json";
-import "./../../css/staking/stakingView.css"; // Ensure this file contains styles as needed
+import "./../../css/staking/stakingView.css";
 
 const base_api_url = api_url.base_api_url;
 
 const StakingChart = () => {
-    const [chartData, setChartData] = useState([]);
+    const [chartData, setChartData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -20,7 +19,6 @@ const StakingChart = () => {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const data = await response.json();
-
                 setChartData(data);
                 setIsLoading(false);
             } catch (e) {
@@ -30,7 +28,6 @@ const StakingChart = () => {
         };
 
         fetchData();
-
     }, []);
 
     if (isLoading) {
@@ -42,25 +39,12 @@ const StakingChart = () => {
     }
 
     return (
-        <div className="staking_chart_container" style={{ display: 'flex', justifyContent: 'space-between', padding: '0 20px' }}>
-            {/* Left container for Stake Time Distribution */}
-            <div className="staking_chart_left" style={{ width: '48%' }}>
-                <div className="staking_chart_background">
-                    <h2 className="chartheading">
-                        Stake Time Distribution For Stakers
-                    </h2>
-                    <StakingHistogramChart data={chartData.stake_time} />
-                </div>
+        <div className="charts-container">
+            <div className="chart-item">
+                    {chartData && <StakingHistogramChart data={chartData.stake_time} />}
             </div>
-
-            {/* Right container for Power Multiplier Distribution */}
-            <div className="staking_chart_right" style={{ width: '48%' }}>
-                <div className="staking_chart_background">
-                    <h2 className="chartheading">
-                        Power Multiplier Distribution For Stakers
-                    </h2>
-                    <PowerMultiplierDistributionChart data={chartData.power_multiplier} />
-                </div>
+            <div className="chart-item">
+                    {chartData && <PowerMultiplierDistributionChart data={chartData.power_multiplier} />}
             </div>
         </div>
     );

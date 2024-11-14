@@ -1,47 +1,71 @@
-@import './../../index.css';
-
-.sub_navbar{
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    grid-auto-rows: minmax(70px,auto);
-    grid-gap: 1em;
-    justify-items: stretch;
-    align-items: stretch;
-    /* place-items: center; */
-    
+.sub_navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+  width: 100%;
 }
 
 .sub_navbar .menu_text {
-    color: inherit;
-    text-decoration: none;
-    /* display: block;  */
-    font-weight: 700;
-    font-size: 1.3em;
-    text-align: center;
+  color: inherit;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.3em;
+  text-align: center;
+  flex: 1;
 }
 
-.sub_card  {
-    border: 2px solid var(--border-color);
-    text-align: center;
-    padding: 1em;
-    color: var(--text-color);
-    padding-top: 1em;
-    text-decoration: none; /* Remove underline */
-    display: block; /* Make the link fill the card area */
-    height: 100%;
-    width: 100%;
+.sub_card {
+  border: 2px solid var(--border-color);
+  text-align: center;
+  padding: 1em;
+  color: var(--text-color);
+  text-decoration: none;
+  display: block;
+  height: 100%;
+  width: 100%;
+  flex: 1;
 }
 
-.sub_card:hover{
-    border: 2px solid var(--hover-border-color);
-    color: var(--primary-color);
+.sub_card:hover {
+  border: 2px solid var(--hover-border-color);
+  color: var(--primary-color);
 }
 
 .sub_card.active {
-    border: 2.5px solid var(--primary-color); /* Highlight the active card */
-    color: var(--primary-color);
+  border: 2.5px solid var(--primary-color);
+  color: var(--primary-color);
 }
 
-/* .menu_text:hover {
-    color: var(--primary-color);
-} */
+@media (max-width: 768px) {
+  .sub_navbar {
+    flex-direction: column;
+    gap: 0.5em;
+    width: 100%;
+  }
+  
+  .sub_navbar .menu_text {
+    width: 100%;
+    display: block;
+    font-size: 1.1em;
+  }
+  
+  .sub_card {
+    padding: 0.5em;
+    width: 100%;
+    margin: 0;
+    /* Remove these lines that were hiding the side borders */
+    /* border-left: none; */
+    /* border-right: none; */
+    /* border-radius: 0; */
+  }
+
+  /* Remove these optional border rules */
+  /* .sub_navbar .menu_text:first-child .sub_card {
+    border-top: 2px solid var(--border-color);
+  }
+  
+  .sub_navbar .menu_text:last-child .sub_card {
+    border-bottom: 2px solid var(--border-color);
+  } */
+}

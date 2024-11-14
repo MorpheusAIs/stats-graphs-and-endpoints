@@ -3,8 +3,6 @@ import './../../css/navbar/sub_navbar.css';
 import { Link, useLocation } from "react-router-dom";
 
 const SubNavbar = () => {
-    // const currentPath = window.location.pathname;
-
     const location = useLocation().pathname;
 
     return (
@@ -12,15 +10,22 @@ const SubNavbar = () => {
             <div className="sub_navbar">
                 <Link to="/supply" className="menu_text">
                     <div className={`sub_card ${location === '/supply' ? 'active' : ''}`}>
-                        {/* <a href="/" className="menu_text">Dashboard</a> */}
                         Supply
-
                     </div>
                 </Link>
                 <Link to="/staking" className="menu_text">
                     <div className={`sub_card ${location === '/staking' ? 'active' : ''}`}>
-                        {/* <a href="/model" className="menu_text">Models</a> */}
                         Staking
+                    </div>
+                </Link>
+                <Link to="/capital" className="menu_text">
+                    <div className={`sub_card ${location === '/capital' ? 'active' : ''}`}>
+                        Capital
+                    </div>
+                </Link>
+                <Link to="/code" className="menu_text">
+                    <div className={`sub_card ${location === '/code' ? 'active' : ''}`}>
+                        Code
                     </div>
                 </Link>
             </div>

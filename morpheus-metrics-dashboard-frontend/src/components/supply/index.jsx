@@ -4,6 +4,8 @@ import PriceVolumeChart from './priceAndTradingVolChart';
 import CirTotalMCapLPView from './cirTotalMCapLPView';
 import MorLockedAndBurnedChart from './morLockedAndBurnedChart';
 import MORHoldersDistribution from './morHoldersDistribution';
+import MorEmissionsChart from './morEmissionsChart';
+import ProtocolLiquidityChart from './protocolLiquidityChart';
 import "./../../css/supply/supplyView.css";
 import api_url from "./../../config/api_url.json";
 
@@ -45,32 +47,31 @@ function SupplyView() {
     }
 
     return (
-        <>
-            <div className="supply_main_grid">
-                <div className="supply_chart_background">
-                    <br />
-                    <h2 className="chartheading">
-                        Total {'&'} Circulating Supply Chart
-                    </h2>
-                    <SupplyChart />
-                </div>
+        <div className="supply-view-container">
+            <div>
                 <PriceVolumeChart />
             </div>
-            <br />
-            <br />
+            <div className="chart-container">
+                <h2 className="chartheading">Historical Total {'&'} Circulating Supply Chart</h2>
+                <SupplyChart />
+            </div>
             <CirTotalMCapLPView marketCapData={marketCapData} positionData={positionData} />
-            <br />
-            <br />
-            {/* Add a container to hold the two charts side by side */}
+            <div className="charts-container">
+                {/* Flexbox wrapper for both MorEmissionsChart and MorLockedAndBurnedChart */}
+                <div className="side-by-side-charts">
+                    <MorLockedAndBurnedChart />
+                    <ProtocolLiquidityChart data={positionData} />
+                </div>
+            </div>
             <div className="charts-container">
                 <div className="chart-item">
                     <MORHoldersDistribution />
                 </div>
                 <div className="chart-item">
-                    <MorLockedAndBurnedChart />
+                <MorEmissionsChart />
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 

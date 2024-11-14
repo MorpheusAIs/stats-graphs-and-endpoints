@@ -1,33 +1,53 @@
+import json
 from collections import OrderedDict
-from app.core.config import TOTAL_SUPPLY_CSV_PATH
 from datetime import datetime
 import pandas as pd
+from sheets_config.google_utils import read_sheet_to_dataframe
+from app.core.config import EMISSIONS_SHEET_NAME
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
-def get_json_from_csv():
-    # Load the CSV into a pandas DataFrame
-    df = pd.read_csv(TOTAL_SUPPLY_CSV_PATH)
+def get_total_supply_from_emissions_df():
+    try:
+        emissions_df = read_sheet_to_dataframe(EMISSIONS_SHEET_NAME)
+    except Exception as e:
+        logger.error(f"Error reading emissions sheet: {str(e)}")
+        return OrderedDict()  # Return empty OrderedDict if sheet read fails
 
-    # Convert the Date column to datetime for comparison
-    df['Date'] = pd.to_datetime(df['Date'], format='%d/%m/%Y')
+    # Ensure the DataFrame has the required columns
+    required_columns = ['Date', 'Total Supply']
+    if not all(col in emissions_df.columns for col in required_columns):
+        logger.error(f"Emissions DataFrame is missing required columns. Available columns: {emissions_df.columns}")
+        return OrderedDict()
 
-    # Get the current date
-    current_date = datetime.utcnow().date()
+    try:
+        # Convert the Date column to datetime for comparison
+        emissions_df['Date'] = pd.to_datetime(emissions_df['Date'])
 
-    # Filter rows from the earliest date in the CSV to the current date
-    df = df[df['Date'].dt.date <= current_date]
+        # Get the current date
+        current_date = datetime.utcnow().date()
 
-    # Sort by date in descending order (latest first)
-    df = df.sort_values(by='Date', ascending=False)
+        # Filter rows from the earliest date in the DataFrame to the current date
+        df = emissions_df[emissions_df['Date'].dt.date <= current_date]
 
-    # Round the 'Total Supply' column to 4 decimal places
-    df['Total Supply'] = df['Total Supply'].round(4)
+        # Sort by date in descending order (latest first)
+        df = df.sort_values(by='Date', ascending=False)
 
-    # Create JSON output: dates as keys, total supply as values
-    json_output = OrderedDict()
-    for _, row in df.iterrows():
-        date_str = row['Date'].strftime('%d/%m/%Y')  # Convert back to DD/MM/YYYY format
-        total_supply = row['Total Supply']
-        json_output[date_str] = total_supply
+        # Round the 'Total Supply' column to 4 decimal places
+        df['Total Supply'] = df['Total Supply'].round(4)
 
-    return json_output
+        # Create JSON output: dates as keys, total supply as values
+        json_output = OrderedDict()
+        for _, row in df.iterrows():
+            date_str = row['Date'].strftime('%d/%m/%Y')  # Convert to DD/MM/YYYY format
+            total_supply = row['Total Supply']
+            json_output[date_str] = total_supply
+
+        return json_output
+
+    except Exception as e:
+        logger.error(f"Error processing emissions data: {str(e)}")
+        return OrderedDict()
