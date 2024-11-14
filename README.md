@@ -4,26 +4,115 @@
 
 The Morpheus AI Metrics Dashboard is a comprehensive tool designed to provide detailed insights into the Supply, Staking, Capital and Code Metrics for the MorpheusAI Community and its native token $MOR. This dashboard serves as a central hub for community members, stakers and developers to access critical data and analytics.
 
-## New (V2) Useful Links:
-1) [V2 Frontend Integrations](https://nirmaans-organization.gitbook.io/morpheus-metrics-dashboard/frontend/markdown/frontend-integrations-v2)
-2) [Capital API Endpoints](https://nirmaans-organization.gitbook.io/morpheus-metrics-dashboard/api-reference/capital-endpoints)
-3) [Code API Endpoints](https://nirmaans-organization.gitbook.io/morpheus-metrics-dashboard/api-reference/code-metrics)
-4) [Backend Capital Helpers](https://nirmaans-organization.gitbook.io/morpheus-metrics-dashboard/backend/api-helpers/capital-helpers)
-5) [Backend Code Helpers](https://nirmaans-organization.gitbook.io/morpheus-metrics-dashboard/backend/api-helpers/code-helpers)
-6) [Updated Codepen Collection](https://codepen.io/collection/VYopJj)
-7) [Frontend Repository](https://github.com/NirmaanAI/stats-graphs-and-endpoints/tree/v2/morpheus-metrics-dashboard-frontend)
-8) [Backend Repository](https://github.com/NirmaanAI/stats-graphs-and-endpoints/tree/v2/morpheus-metrics-dashboard)
-   
-## All Useful Links:
-1) [Morpheus AI Metrics Dashboard](https://mor-explorer-frontend.pages.dev/supply)
-2) [Gitbook Catalog](https://nirmaans-organization.gitbook.io/morpheus-metrics-dashboard)
-2) [API Reference](https://nirmaans-organization.gitbook.io/morpheus-metrics-dashboard/api-reference/introduction)
-3) [Frontend Examples & Reference](https://nirmaans-organization.gitbook.io/morpheus-metrics-dashboard/frontend/markdown)
-4) [Backend Examples & Reference](https://nirmaans-organization.gitbook.io/morpheus-metrics-dashboard/backend/api-helpers)
-5) [Frontend Repository](https://github.com/NirmaanAI/stats-graphs-and-endpoints/tree/v2/morpheus-metrics-dashboard-frontend)
-6) [Backend Repository](https://github.com/NirmaanAI/stats-graphs-and-endpoints/tree/v2/morpheus-metrics-dashboard)
-7) [API Code](https://github.com/NirmaanAI/stats-graphs-and-endpoints/blob/v2/morpheus-metrics-dashboard/main.py)
-8) [Codepen](https://codepen.io/collection/VYopJj)
+# Dashboard Links
+1) [Morpheus AI Metrics Dashboard - Azure](https://proud-beach-0b578aa10.5.azurestaticapps.net/supply)
+2) [Morpheus AI Metrics Dashboard - Cloudflare](https://mor-explorer-frontend.pages.dev/supply)
+
+# GitHub Links
+1) [Frontend Repository](https://github.com/MorpheusAIs/stats-graphs-and-endpoints/tree/main/morpheus-metrics-dashboard-frontend)
+2) [Backend Repository](https://github.com/MorpheusAIs/stats-graphs-and-endpoints/tree/main/morpheus-metrics-dashboard)
+3) [API Code](https://github.com/MorpheusAIs/stats-graphs-and-endpoints/blob/main/morpheus-metrics-dashboard/main.py)
+
+# GitBook Links
+1) [Gitbook Catalog](https://morpheus-software.gitbook.io/mor-metrics-dashboard/)
+## GitBook Master Links
+1) [API Reference](https://morpheus-software.gitbook.io/mor-metrics-dashboard/api-reference/introduction)
+2) [Frontend Examples & Reference](https://morpheus-software.gitbook.io/mor-metrics-dashboard/frontend/frontend-integration-details)
+3) [Backend Examples & Reference](https://morpheus-software.gitbook.io/mor-metrics-dashboard/backend/api-helpers)
+## GitBook V2 Links:
+1) [V2 Frontend Integrations](https://morpheus-software.gitbook.io/mor-metrics-dashboard/frontend/frontend-integration-details/frontend-integrations-v2)
+2) [Capital API Endpoints](https://morpheus-software.gitbook.io/mor-metrics-dashboard/api-reference/capital-endpoints)
+3) [Code API Endpoints](https://morpheus-software.gitbook.io/mor-metrics-dashboard/api-reference/code-metrics)
+4) [Backend Capital Helpers](https://morpheus-software.gitbook.io/mor-metrics-dashboard/backend/api-helpers/capital-helpers)
+5) [Backend Code Helpers](https://morpheus-software.gitbook.io/mor-metrics-dashboard/backend/api-helpers/code-helpers)
+
+# CodePen Link:
+1) [Morpheus Metrics Dashboard Codepen Collection](https://codepen.io/collection/VYopJj)
+## Other CodePen Links
+1. **Daily MOR Emissions - Supply Page**  
+   This chart displays the data for Daily MOR Emissions Over Time.  
+   [View on CodePen](https://codepen.io/team/morpheus/pen/BaXNPGe)
+
+2. **MOR Rewards Staked Over Time - Staking Page**  
+   This chart shows the MOR Rewards Locked by Contributors Over Time for Each Pool.  
+   [View on CodePen](https://codepen.io/team/morpheus/pen/WNVgmMY)
+
+3. **Total vs Current Capital Provided Over Time - Capital Page**  
+   This chart shows the Current and Total Capital provided by contributors over time.  
+   [View on CodePen](https://codepen.io/team/morpheus/pen/oNKPOqy)
+
+4. **Number of Active vs Total Capital Providers Over Time - Capital Page**  
+   This chart shows the Current and Total Capital providers over time.  
+   [View on CodePen](https://codepen.io/team/morpheus/pen/mdNGgzg)
+
+5. **Yield Generated by Capital Providers - Capital Page**  
+   This chart shows the Yield Generated by capital contributors over time.  
+   [View on CodePen](https://codepen.io/team/morpheus/pen/WNVgWqx)
+
+6. **MOR Capital Rewards Distribution**  
+   This chart represents the Total Emissions for the Capital Pool and the amount of MOR Claimed and Unclaimed till now. The Unclaimed MOR also contains a sector which shows the Unclaimed MOR that has been staked till now.  
+   [View on CodePen](https://codepen.io/team/morpheus/pen/yLmxWLX)
+
+7. **MOR Code Rewards Distribution**  
+   This chart represents the Total Emissions for the Code Pool and the amount of MOR Claimed and Unclaimed till now. The Unclaimed MOR also contains a sector which shows the Unclaimed MOR that has been staked till now.  
+   [View on CodePen](https://codepen.io/team/morpheus/pen/yLmxWLX)
+
+8. **Repository Commits Over Time**  
+   This chart represents commits made by contributors across each Morpheus Repo and in total over time.  
+   [View on CodePen](https://codepen.io/team/morpheus/pen/eYqLaNy)
+
+# Azure Links:
+1) [Morpheus Metrics API Link](https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net)
+2) [Morpheus AI Metrics Dashboard - Azure](https://proud-beach-0b578aa10.5.azurestaticapps.net/supply)
+## Azure Endpoint Links
+1. **Root Endpoint**  
+   [https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/](https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/)
+
+2. **Staker Related Metrics - /analyze-mor-stakers**  
+   [https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/analyze-mor-stakers](https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/analyze-mor-stakers)
+
+3. **Reward Related Metrics - /give_mor_reward**  
+   [https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/give_mor_reward](https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/give_mor_reward)
+
+4. **Distribution Related Metrics - /get_stake_info**  
+   [https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/get_stake_info](https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/get_stake_info)
+
+5. **Supply Related Metrics - /total_and_circ_supply**  
+   [https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/total_and_circ_supply](https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/total_and_circ_supply)
+
+6. **Price Related Metrics - /prices_and_trading_volume**  
+   [https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/prices_and_trading_volume](https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/prices_and_trading_volume)
+
+7. **Market Cap Related Metrics - /get_market_cap**  
+   [https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/get_market_cap](https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/get_market_cap)
+
+8. **MOR Holder Related Metrics - /mor_holders_by_range**  
+   [https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/mor_holders_by_range](https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/mor_holders_by_range)
+
+9. **Locked and Burnt MOR Related Metrics - /locked_and_burnt_mor**  
+   [https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/locked_and_burnt_mor](https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/locked_and_burnt_mor)
+
+10. **Uniswap PoL Related Metrics - /protocol_liquidity**  
+    [https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/protocol_liquidity](https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/protocol_liquidity)
+
+11. **Last Cache Update Time - /last_cache_update_time**  
+    [https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/last_cache_update_time](https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/last_cache_update_time)
+
+12. **Capital Related Metrics - /capital_metrics**  
+    [https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/capital_metrics](https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/capital_metrics)
+
+13. **GitHub Related Metrics - /github_commits**  
+    [https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/github_commits](https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/github_commits)
+
+14. **Locked Rewards Related Metrics - /historical_mor_rewards_locked**  
+    [https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/historical_mor_rewards_locked](https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/historical_mor_rewards_locked)
+
+15. **Code Related Metrics - /code_metrics**  
+    [https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/code_metrics](https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/code_metrics)
+
+16. **Chain-Wise Supplies - /chain_wise_supplies**  
+    [https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/chain_wise_supplies](https://morpheus-ai-metrics-a9febnfedac6a6fx.centralus-01.azurewebsites.net/chain_wise_supplies)
+
 
 ## Features
 
@@ -37,7 +126,7 @@ The Morpheus AI Metrics Dashboard is a comprehensive tool designed to provide de
 ## Deployment
 
 The current version of the dashboard is live and accessible at:
-[Morpheus AI Metrics Dashboard](https://mor-explorer-frontend.pages.dev/supply)
+[Morpheus AI Metrics Dashboard](https://proud-beach-0b578aa10.5.azurestaticapps.net/supply)
 
 This deployment is hosted on MOR.Software's cloud infrastructure, ensuring high availability and performance.
 
@@ -47,7 +136,7 @@ This deployment is hosted on MOR.Software's cloud infrastructure, ensuring high 
 
 We have compiled a comprehensive GitBook catalog to serve as a reference guide for contributors and developers. This catalog provides in-depth information about the project's architecture, implementation details, and usage guidelines.
 
-- [Morpheus Metrics Dashboard GitBook](https://nirmaans-organization.gitbook.io/morpheus-metrics-dashboard)
+- [Morpheus Metrics Dashboard GitBook](https://morpheus-software.gitbook.io/mor-metrics-dashboard)
 
 The catalog includes:
 - Step-by-step walkthroughs
@@ -58,7 +147,7 @@ The catalog includes:
 
 For developers looking to integrate or extend the dashboard's functionality, we have created a detailed API reference:
 
-- [API Reference Guide](https://nirmaans-organization.gitbook.io/morpheus-metrics-dashboard/api-reference/introduction)
+- [API Reference Guide](https://morpheus-software.gitbook.io/mor-metrics-dashboard/api-reference/introduction)
 
 This guide outlines:
 - Available endpoints
@@ -69,8 +158,8 @@ This guide outlines:
 
 ### Frontend
 
-- [Frontend Examples & Reference](https://nirmaans-organization.gitbook.io/morpheus-metrics-dashboard/frontend/markdown)
-- [Frontend Repository](https://github.com/NirmaanAI/stats-graphs-and-endpoints/tree/v2/morpheus-metrics-dashboard-frontend)
+- [Frontend Examples & Reference](https://morpheus-software.gitbook.io/mor-metrics-dashboard/frontend/frontend-integration-details)
+- [Frontend Repository](https://github.com/MorpheusAIs/stats-graphs-and-endpoints/tree/main/morpheus-metrics-dashboard-frontend)
 
 #### Frontend Integration Points
 
@@ -80,9 +169,9 @@ This guide outlines:
 
 ### Backend
 
-- [Backend Examples & Reference](https://nirmaans-organization.gitbook.io/morpheus-metrics-dashboard/backend/api-helpers)
-- [Backend Repository](https://github.com/NirmaanAI/stats-graphs-and-endpoints/tree/v2/morpheus-metrics-dashboard)
-- [API Implementation](https://github.com/NirmaanAI/stats-graphs-and-endpoints/blob/v2/morpheus-metrics-dashboard/main.py)
+- [Backend Examples & Reference](https://morpheus-software.gitbook.io/mor-metrics-dashboard/backend/api-helpers)
+- [Backend Repository](https://github.com/MorpheusAIs/stats-graphs-and-endpoints/tree/main/morpheus-metrics-dashboard)
+- [API Implementation](https://github.com/MorpheusAIs/stats-graphs-and-endpoints/tree/main/morpheus-metrics-dashboard/main.py)
 
 #### Backend Integration Points
 
@@ -110,4 +199,4 @@ If you encounter any issues or have questions, please open an issue in the appro
 
 ---
 
-This doc serves as a comprehensive reference for developers looking to understand the Morpheus AI Metrics Dashboard. We encourage all community members to review this documentation and provide feedback to ensure its accuracy and usefulness.
+This PR serves as a comprehensive reference for developers looking to understand the Morpheus AI Metrics Dashboard. We encourage all community members to review this documentation and provide feedback to ensure its accuracy and usefulness.
