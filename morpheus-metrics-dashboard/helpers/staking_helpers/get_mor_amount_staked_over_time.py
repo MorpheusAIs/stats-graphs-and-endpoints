@@ -68,6 +68,17 @@ async def get_mor_staked_over_time():
         df = get_dataframe_from_sheet_name(USER_MULTIPLIER_SHEET_NAME)
         df['Timestamp'] = pd.to_datetime(df['Timestamp'])
 
+        # Add logging for data verification
+        logger.info(f"Total rows in DataFrame: {len(df)}")
+        logger.info(f"Date range in data: {df['Timestamp'].min()} to {df['Timestamp'].max()}")
+        
+        # Check for gaps in data
+        dates = pd.date_range(start=df['Timestamp'].min(), end=df['Timestamp'].max(), freq='D')
+        actual_dates = df['Timestamp'].dt.date.unique()
+        missing_dates = [d for d in dates if d.date() not in actual_dates]
+        if missing_dates:
+            logger.warning(f"Missing data for dates: {missing_dates}")
+
         # Initialize tracking dictionary with defaultdict
         daily_rewards = defaultdict(lambda: {
             'daily_current_rewards_locked': 0.0,
@@ -102,11 +113,14 @@ async def get_mor_staked_over_time():
                 if pool_id == 0:
                     daily_rewards[date_key]['pool_0_daily'] += round(reward, 4)
                     cumulative_pool_0 += reward
+                    logger.debug(f"Date: {date_key}, Pool 0 - Daily: {round(reward, 4)}, Cumulative: {round(cumulative_pool_0, 4)}")
                 else:
                     daily_rewards[date_key]['pool_1_daily'] += round(reward, 4)
                     cumulative_pool_1 += reward
+                    logger.debug(f"Date: {date_key}, Pool 1 - Daily: {round(reward, 4)}, Cumulative: {round(cumulative_pool_1, 4)}")
 
                 cumulative_total = cumulative_pool_0 + cumulative_pool_1
+                logger.debug(f"Date: {date_key}, Total Cumulative: {round(cumulative_total, 4)}")
 
                 # Update cumulative values for this date
                 daily_rewards[date_key]['total'] = round(cumulative_total, 4)
@@ -115,6 +129,21 @@ async def get_mor_staked_over_time():
 
             await asyncio.sleep(1)  # Rate limiting
 
+        # Validate final rewards data
+        sorted_dates = sorted(daily_rewards.keys())
+        for i in range(1, len(sorted_dates)):
+            prev_date = sorted_dates[i-1]
+            curr_date = sorted_dates[i]
+            
+            # Check for unexpected drops in cumulative values
+            if daily_rewards[curr_date]['total'] < daily_rewards[prev_date]['total']:
+                logger.error(f"Unexpected drop in total rewards between {prev_date} and {curr_date}")
+            if daily_rewards[curr_date]['capital'] < daily_rewards[prev_date]['capital']:
+                logger.error(f"Unexpected drop in capital rewards between {prev_date} and {curr_date}")
+            if daily_rewards[curr_date]['code'] < daily_rewards[prev_date]['code']:
+                logger.error(f"Unexpected drop in code rewards between {prev_date} and {curr_date}")
+
+        logger.info("Finished processing rewards data")
         return dict(daily_rewards)
 
     except Exception as e:
