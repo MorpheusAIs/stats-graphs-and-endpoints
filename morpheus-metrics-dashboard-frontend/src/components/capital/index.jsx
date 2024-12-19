@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CapitalStakedAmountsChart from './capitalStakedAmountsChart';
+import CurrentCapitalChart from './currentCapitalChart';
 import CapitalProvidersChart from './capitalProvidersChart';
 import CapitalYieldChart from './capitalYieldChart';
 import CapitalRewardsChart from './capitalRewardsChart';
@@ -71,11 +72,21 @@ function CapitalView() {
 
     return (
         <div className="capital-view-container">
-            <CapitalStakedAmountsChart 
-                data={capitalData} 
-                stEthPrice={stEthPrice}
-            />
             <CapitalProvidersChart data={capitalData} />
+            <div className="charts-row">
+                <div className="chart-col">
+                    <CapitalStakedAmountsChart 
+                        data={capitalData} 
+                        stEthPrice={stEthPrice}
+                    />
+                </div>
+                <div className="chart-col">
+                    <CurrentCapitalChart 
+                        data={capitalData} 
+                        stEthPrice={stEthPrice}
+                    />
+                </div>
+            </div>
             <div className="charts-row">
                 <div className="chart-col">
                     <CapitalYieldChart 
