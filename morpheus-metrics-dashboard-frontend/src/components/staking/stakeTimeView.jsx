@@ -21,7 +21,7 @@ const formatDaysToYearsMonthsDays = (daysString) => {
     return result.join(', ');
 };
 
-const StakingMetricsCard = ({ averageMultiplier, averageStakeTime, dailyRewards, totalRewards, uniqueStakers, dailyEmittedPercentage, totalEmittedPercentage }) => {
+const StakingMetricsCard = ({ averageMultiplier, averageStakeTime, dailyRewards, totalRewards, uniqueStakers, dailyEmittedPercentage, averageAPR }) => {
     return (
         <div className="staking_metrics_card">
             <DataCard
@@ -60,8 +60,8 @@ const StakingMetricsCard = ({ averageMultiplier, averageStakeTime, dailyRewards,
                 suffix="%"
             />
             <DataCard
-                title="% Staked to Total Emitted"
-                value={totalEmittedPercentage.toFixed(2)}
+                title="Average APR"
+                value={averageAPR.toFixed(2)}
                 subcontent={null}
                 prefix={null}
                 suffix="%"
@@ -162,6 +162,10 @@ const StakeTimeView = () => {
             totalEmission = emissionrewardAnalysis.total_emissions?.[emissionType] || 0;
         }
 
+        // Calculate APR (Annual Percentage Rate)
+        // APR = (Daily Rewards * 365 / Total Rewards) * 100
+        const averageAPR = totalRewards > 0 ? (dailyRewards * 365 / totalRewards) * 100 : 0;
+
         return {
             averageMultiplier: (key === 'combined' 
                 ? multiplierAnalysis.overall_average / 1e7
@@ -173,7 +177,7 @@ const StakeTimeView = () => {
             totalRewards: totalRewards,
             uniqueStakers: Math.round(key === 'combined' ? combinedStakers : key === 'capital' ? pool0Stakers : pool1Stakers),
             dailyEmittedPercentage: dailyEmission ? (dailyRewards / dailyEmission) * 100 : 0,
-            totalEmittedPercentage: totalEmission ? (totalRewards / totalEmission) * 100 : 0
+            averageAPR: averageAPR
         };
     };
 

@@ -1,0 +1,69 @@
+# Dependencies
+node_modules/
+venv/
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Next.js
+.next/
+out/
+.vercel
+.env*.local
+next-env.d.ts
+
+# Testing
+coverage/
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+
+# Production
+build/
+dist/
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+*.pem
+
+# Misc
+.DS_Store
+*.log
+logs
+*.pid
+*.seed
+*.pid.lock
