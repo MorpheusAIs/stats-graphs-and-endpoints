@@ -34,7 +34,7 @@ const CustomTooltip = ({ active, payload, label, isMobile, showUSD }) => {
     return null;
 };
 
-const CapitalStakedAmountsChart = ({ data, stEthPrice = 0 }) => {
+const CurrentCapitalChart = ({ data, stEthPrice = 0 }) => {
     const [timeRange, setTimeRange] = useState('All Time');
     const [chartData, setChartData] = useState([]);
     const [filteredChartData, setFilteredChartData] = useState([]);
@@ -53,15 +53,15 @@ const CapitalStakedAmountsChart = ({ data, stEthPrice = 0 }) => {
         try {
             if (!data) return;
 
-            const dates = Object.keys(data.total_staked_steth_amount_by_date);
+            const dates = Object.keys(data.currently_staked_steth_amount_by_date);
 
             const processedData = dates.map(date => {
-                const totalSteth = data.total_staked_steth_amount_by_date[date] || 0;
+                const currentSteth = data.currently_staked_steth_amount_by_date[date] || 0;
                 
                 return {
                     date: format(parse(date, 'dd/MM/yyyy', new Date()), 'MMM d, yyyy'),
                     dateObj: parse(date, 'dd/MM/yyyy', new Date()),
-                    "Total Capital Provided": showUSDValue ? totalSteth * stEthPrice : totalSteth
+                    "Current Capital Provided": showUSDValue ? currentSteth * stEthPrice : currentSteth
                 };
             });
 
@@ -146,10 +146,9 @@ const CapitalStakedAmountsChart = ({ data, stEthPrice = 0 }) => {
                 position: 'relative'
             }}>
                 <h2 className="chartheading" style={{ textAlign: 'center', marginBottom: isMobile ? '16px' : 0 }}>
-                    Total Capital Provided Over Time
+                    Current Capital Provided Over Time
                 </h2>
                 {!isMobile ? (
-                    // Desktop version - keep the button on the right
                     <div style={{
                         position: 'absolute',
                         right: '12px',
@@ -191,7 +190,6 @@ const CapitalStakedAmountsChart = ({ data, stEthPrice = 0 }) => {
                         </div>
                     </div>
                 ) : (
-                    // Mobile version - button below heading
                     <div 
                         onClick={() => setShowUSD(!showUSD)}
                         style={{
@@ -225,7 +223,6 @@ const CapitalStakedAmountsChart = ({ data, stEthPrice = 0 }) => {
                     </div>
                 )}
             </div>
-            {/* Rest of your component remains the same */}
             <div className="toggle-container">
                 <ToggleButtonGroup
                     options={timeRangeOptions}
@@ -234,7 +231,7 @@ const CapitalStakedAmountsChart = ({ data, stEthPrice = 0 }) => {
                 />
             </div>
             <p className="chart-note">
-                Visualization of Total Capital Provided Over Time in {showUSD ? 'USD' : 'stETH'}
+                Visualization of Current Capital Provided Over Time in {showUSD ? 'USD' : 'stETH'}
             </p>
             <div className="chart-wrapper" ref={scrollRef}>
                 <div style={{ width: chartWidth, height: chartHeight }}>
@@ -283,8 +280,8 @@ const CapitalStakedAmountsChart = ({ data, stEthPrice = 0 }) => {
                             />
                             <Line 
                                 type="monotone" 
-                                dataKey="Total Capital Provided" 
-                                stroke="#8884d8" 
+                                dataKey="Current Capital Provided" 
+                                stroke="#82ca9d" 
                                 activeDot={{ r: isMobile ? 4 : 8, fill: '#01FF85' }} 
                                 dot={false} 
                                 legendType='diamond'
@@ -297,4 +294,4 @@ const CapitalStakedAmountsChart = ({ data, stEthPrice = 0 }) => {
     );
 };
 
-export default CapitalStakedAmountsChart;
+export default CurrentCapitalChart;
