@@ -40,7 +40,7 @@ const MainNavbar = () => {
     return (
         <nav className="navbar">
             <div className="navbar-brand">
-                <a href="/">
+                <a href="https://mor.org">
                     <img src={morlogo} alt="Logo" className="logo" />
                 </a>
             </div>
