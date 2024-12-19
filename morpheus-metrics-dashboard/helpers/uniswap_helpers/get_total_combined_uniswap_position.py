@@ -1,6 +1,7 @@
 import requests
 from helpers.uniswap_helpers.get_uniswap_position_arb import get_arb_protocol_liquidity
 from helpers.uniswap_helpers.get_uniswap_position_base import get_base_protocol_liquidity
+from helpers.uniswap_helpers.get_uniswap_position_eth import get_eth_protocol_liquidity
 from app.core.config import MOR_ARBITRUM_ADDRESS, STETH_TOKEN_ADDRESS
 
 DEX_API_URL = "https://api.dexscreener.io/latest/dex/tokens/{}"
@@ -22,6 +23,7 @@ def fetch_token_price(token_address):
 def get_combined_uniswap_position():
     arb_position = get_arb_protocol_liquidity()
     base_position = get_base_protocol_liquidity()
+    eth_position = get_eth_protocol_liquidity()
 
     arb_position_data = arb_position['positions'][
         '0x092bAaDB7DEf4C3981454dD9c0A0D7FF07bCFc86_0x82aF49447D8a07e3bd95BD0d56f35241523fBab1_3000']
@@ -33,8 +35,14 @@ def get_combined_uniswap_position():
     base_eth_balance = base_position_data['token0']['balance']
     base_mor_balance = base_position_data['token1']['balance']
 
-    total_mor_balance = float(arb_mor_balance + base_mor_balance)
-    total_eth_balance = float(arb_eth_balance + base_eth_balance)
+    # Get Ethereum position data
+    eth_position_key = list(eth_position['positions'].keys())[0]  # Get the first position key
+    eth_position_data = eth_position['positions'][eth_position_key]
+    eth_mor_balance = eth_position_data['token0']['balance']
+    eth_eth_balance = eth_position_data['token1']['balance']
+
+    total_mor_balance = float(arb_mor_balance + base_mor_balance + eth_mor_balance)
+    total_eth_balance = float(arb_eth_balance + base_eth_balance + eth_eth_balance)
 
     mor_price = fetch_token_price(MOR_ARBITRUM_ADDRESS)
     steth_price = fetch_token_price(STETH_TOKEN_ADDRESS)
@@ -67,6 +75,11 @@ def get_combined_uniswap_position():
         "base_pool_mor_balance": base_mor_balance,
         "base_pool_eth_balance": base_eth_balance,
         "base_pool_usd_value": (base_mor_balance * mor_price) + (base_eth_balance * steth_price)
+    }
+    data['eth_pool_values'] = {
+        "eth_pool_mor_balance": eth_mor_balance,
+        "eth_pool_eth_balance": eth_eth_balance,
+        "eth_pool_usd_value": (eth_mor_balance * mor_price) + (eth_eth_balance * steth_price)
     }
 
     return data
