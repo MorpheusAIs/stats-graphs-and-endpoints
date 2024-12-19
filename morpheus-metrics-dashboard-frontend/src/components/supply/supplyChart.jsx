@@ -145,7 +145,7 @@ const SupplyChart = () => {
                     </button>
                </div>
             </div>
-            <p class="chart-note">Visualisation of Daily Total Supply vs Circulating Supply for $MOR </p>
+            <p className="chart-note">Visualisation of Daily Total Supply vs Circulating Supply for $MOR </p>
             <div className="chart-wrapper" ref={scrollRef}>
                 <div style={{ width: chartWidth, height: chartHeight }}>
                     <ResponsiveContainer width="100%" height={isMobile ? 300 : "100%"}>
