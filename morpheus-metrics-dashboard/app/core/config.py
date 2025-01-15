@@ -126,3 +126,25 @@ UNISWAP_POOL_ADDRESS_BASE = "0x37ecD41f5a01B23a3d9bb3b4DdfEF4eD455d6fd3"
 base_positions_nft_contract = web3_base.eth.contract(address=web3_base.to_checksum_address(UNISWAP_V3_POSITIONS_NFT_ADDRESS_BASE), abi=BASE_POSITIONS_NFT_ABI)
 base_factory_contract = web3_base.eth.contract(address=web3_base.to_checksum_address(UNISWAP_V3_FACTORY_ADDRESS_BASE), abi=BASE_FACTORY_NFT_ABI)
 base_pool_contract = web3_base.eth.contract(address=web3_base.to_checksum_address(UNISWAP_POOL_ADDRESS_BASE), abi=BASE_POOL_ABI)
+
+# Uniswap ETH Config
+MOR_MULTISIG_ETH = web3.to_checksum_address("0x151c2b49CdEC10B150B2763dF3d1C00D70C90956")
+
+eth_json_path_position = os.path.join(project_root, 'json_files', 'abi', 'uniswap', 'eth', 'eth_position_nft_abi.json')
+eth_json_path_factory = os.path.join(project_root, 'json_files', 'abi', 'uniswap', 'eth', 'eth_uniswap_factory_abi.json')
+eth_json_path_pool = os.path.join(project_root, 'json_files', 'abi', 'uniswap', 'eth', 'eth_pool_uniswap_abi.json')
+
+with open(eth_json_path_position, 'r') as file:
+    ETH_POSITIONS_NFT_ABI = json.load(file)
+with open(eth_json_path_factory, 'r') as file:
+    ETH_FACTORY_NFT_ABI = json.load(file)
+with open(eth_json_path_pool, 'r') as file:
+    ETH_POOL_ABI = json.load(file)
+
+UNISWAP_V3_POSITIONS_NFT_ADDRESS_ETH = '0xC36442b4a4522E871399CD717aBDD847Ab11FE88'  #NonfungiblePositionManager
+UNISWAP_V3_FACTORY_ADDRESS_ETH = '0x1F98431c8aD98523631AE4a59f267346ea31F984'  #UniswapV3Factory
+UNISWAP_POOL_ADDRESS_ETH = "0x151c2b49cdec10b150b2763df3d1c00d70c90956"  # Replace with actual ETH pool address
+
+eth_positions_nft_contract = web3.eth.contract(address=web3.to_checksum_address(UNISWAP_V3_POSITIONS_NFT_ADDRESS_ETH), abi=ETH_POSITIONS_NFT_ABI)
+eth_factory_contract = web3.eth.contract(address=web3.to_checksum_address(UNISWAP_V3_FACTORY_ADDRESS_ETH), abi=ETH_FACTORY_NFT_ABI)
+eth_pool_contract = web3.eth.contract(address=web3.to_checksum_address(UNISWAP_POOL_ADDRESS_ETH), abi=ETH_POOL_ABI)

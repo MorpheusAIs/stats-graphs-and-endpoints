@@ -110,7 +110,7 @@ const ProtocolLiquidityChart = ({ data }) => {
     const [activeIndex, setActiveIndex] = useState(null);
     const [centerValue, setCenterValue] = useState(data.total_value_usd);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-    const COLORS = ['#23DC8E', '#0047CA', '#fdb366'];
+    const COLORS = ['#23DC8E', '#0047CA', '#fdb366', '#FF69B4'];
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth <= 768);
@@ -142,6 +142,8 @@ const ProtocolLiquidityChart = ({ data }) => {
             setCenterValue(data.arb_pool_values.arb_pool_usd_value);
         } else if (activeIndex === 2) {
             setCenterValue(data.base_pool_values.base_pool_usd_value);
+        } else if (activeIndex === 3) {
+            setCenterValue(data.eth_pool_values.eth_pool_usd_value);
         }
     }, [activeIndex, data]);
 
@@ -179,6 +181,13 @@ const ProtocolLiquidityChart = ({ data }) => {
             value: data.base_pool_values.base_pool_usd_value,
             percentage: ((data.base_pool_values.base_pool_usd_value / data.total_value_usd) * 100).toFixed(2),
             fill: COLORS[2]
+        },
+        {
+            name: "Ethereum PoL",
+            displayName: "ETH PoL",
+            value: data.eth_pool_values.eth_pool_usd_value,
+            percentage: ((data.eth_pool_values.eth_pool_usd_value / data.total_value_usd) * 100).toFixed(2),
+            fill: COLORS[3]
         }
     ];
 
@@ -214,7 +223,7 @@ const ProtocolLiquidityChart = ({ data }) => {
                 color: '#a0a0a0',
                 margin: '0 0 0px 0'
             }}>
-                Visualisation of PoL Values in USD for MOR Arbitrum Pool, Base Pool and both pools combined.
+                Visualisation of PoL Values in USD for MOR Arbitrum Pool, Base Pool, Ethereum Pool and all pools combined.
             </p>
             <p className="chart-note" style={{ 
                 textAlign: 'center', 
@@ -297,7 +306,8 @@ const ProtocolLiquidityChart = ({ data }) => {
                                 }}
                             >
                                 {activeIndex === null || activeIndex === 0 ? 'Total PoL Value' : 
-                                 activeIndex === 1 ? 'ARB PoL Value' : 'BASE PoL Value'}
+                                 activeIndex === 1 ? 'ARB PoL Value' : 
+                                 activeIndex === 2 ? 'BASE PoL Value' : 'ETH PoL Value'}
                             </text>
                             <text
                                 x="50%"

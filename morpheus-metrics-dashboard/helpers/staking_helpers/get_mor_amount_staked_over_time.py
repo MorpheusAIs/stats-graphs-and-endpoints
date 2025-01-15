@@ -78,8 +78,9 @@ async def get_mor_staked_over_time():
             'pool_1_daily': 0.0
         })
 
-        # Filter valid stakes
-        valid_stakes = df[df.apply(is_valid_stake, axis=1)].copy()
+        # Create a mask for valid stakes and create an explicit copy
+        valid_stakes_mask = df.apply(is_valid_stake, axis=1)
+        valid_stakes = df.loc[valid_stakes_mask].copy(deep=True)
 
         # Process in batches
         batches = [valid_stakes[i:i + BATCH_SIZE] for i in range(0, len(valid_stakes), BATCH_SIZE)]

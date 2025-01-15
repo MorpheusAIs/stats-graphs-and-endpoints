@@ -48,6 +48,7 @@ const MorRewardsLockedChart = ({ data }) => {
 
     useEffect(() => {
         if (data) {
+            console.log("Raw MOR Rewards Data:", data);
             const processedData = Object.entries(data).map(([date, values]) => ({
                 date: format(parse(date, 'dd/MM/yyyy', new Date()), 'MMM d, yyyy'),
                 dateObj: parse(date, 'dd/MM/yyyy', new Date()),
@@ -55,6 +56,27 @@ const MorRewardsLockedChart = ({ data }) => {
                 capital: values.capital,
                 code: values.code
             })).sort((a, b) => a.dateObj - b.dateObj);
+
+            console.log("Processed Chart Data:", processedData);
+            
+            if (processedData.length > 1) {
+                const dateGaps = [];
+                for (let i = 1; i < processedData.length; i++) {
+                    const prevDate = processedData[i-1].dateObj;
+                    const currDate = processedData[i].dateObj;
+                    const daysDiff = Math.floor((currDate - prevDate) / (1000 * 60 * 60 * 24));
+                    if (daysDiff > 1) {
+                        dateGaps.push({
+                            start: format(prevDate, 'MMM d, yyyy'),
+                            end: format(currDate, 'MMM d, yyyy'),
+                            days: daysDiff
+                        });
+                    }
+                }
+                if (dateGaps.length > 0) {
+                    console.warn("Found gaps in the data:", dateGaps);
+                }
+            }
 
             setChartData(processedData);
         }
