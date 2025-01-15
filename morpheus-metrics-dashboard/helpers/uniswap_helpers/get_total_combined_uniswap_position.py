@@ -1,8 +1,11 @@
+import logging
 import requests
 from helpers.uniswap_helpers.get_uniswap_position_arb import get_arb_protocol_liquidity
 from helpers.uniswap_helpers.get_uniswap_position_base import get_base_protocol_liquidity
 from helpers.uniswap_helpers.get_uniswap_position_eth import get_eth_protocol_liquidity
 from app.core.config import MOR_ARBITRUM_ADDRESS, STETH_TOKEN_ADDRESS
+
+logger = logging.getLogger(__name__)
 
 DEX_API_URL = "https://api.dexscreener.io/latest/dex/tokens/{}"
 
@@ -35,8 +38,15 @@ def get_combined_uniswap_position():
     base_eth_balance = base_position_data['token0']['balance']
     base_mor_balance = base_position_data['token1']['balance']
 
-    # Get Ethereum position data
-    eth_position_key = list(eth_position['positions'].keys())[0]  # Get the first position key
+    # Add error handling
+    if not eth_position.get('positions'):
+        logger.warning("No ETH positions found")
+        return {
+            "total_value": 0,
+            "positions": {}
+        }
+        
+    eth_position_key = list(eth_position['positions'].keys())[0]
     eth_position_data = eth_position['positions'][eth_position_key]
     eth_mor_balance = eth_position_data['token0']['balance']
     eth_eth_balance = eth_position_data['token1']['balance']
